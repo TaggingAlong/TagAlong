@@ -4,24 +4,24 @@ from sqlalchemy.orm import mapper
 from app.models import metadata, db_session
 
 class Users(object):
-    query = db_session.query_property()
-    
-    def __init__(self, id_users=None, username=None, email=None, passwd=None, level=None):
-        self.id_users = id_users
-        self.username = username
-        self.passwd = passwd
-        self.email = email
-        self.level = level
+	query = db_session.query_property()
+	
+	def __init__(self, id_users=None, username=None, email=None, passwd=None, level=None):
+	    self.id_users = id_users
+	    self.username = username
+	    self.passwd = passwd
+	    self.email = email
+	    self.level = level
 
-    def __repr__(self):
-        return '<Users %r>' % (self.id_users)
+	def __repr__(self):
+	    return '<Users %r>' % (self.id_users)
 
 users = Table('users', metadata,
-    Column('id_users', Integer, primary_key=True),
-    Column('username', String(255)),
-    Column('passwd', String(255)),
-    Column('email', String(255)),
-    Column('level', Integer)
+	Column('id_users', Integer, primary_key=True),
+	Column('username', String(255)),
+	Column('passwd', String(255)),
+	Column('email', String(255)),
+	Column('level', Integer)
 )
 
 mapper(Users, users)
