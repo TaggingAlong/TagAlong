@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 
 from app import app
-from app.database import db_session, engine
+from app.models import db_session, engine
 from app.models.users import users, Users
 
 import json
