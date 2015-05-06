@@ -16,10 +16,8 @@ def get_user(user_name):
 			"user_id": usr.id_users,
 			"user_name": usr.username,
 			"user_email": usr.email,
-			"user_level": usr.level,
 			"user_media": media,
 			"user_media_count": len(media)}
 	except AttributeError:
 		data = {}
 	return (jsonify(data))
-
