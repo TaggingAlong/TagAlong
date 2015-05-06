@@ -4,8 +4,6 @@ from app import app
 from app.models import db_session, engine
 from app.models.users import users, Users
 
-import json
-
 @app.route("/user/<user_name>")
 @app.route("/User/<user_name>")
 def get_user(user_name):

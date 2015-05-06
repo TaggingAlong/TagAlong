@@ -5,8 +5,6 @@ from app.models import db_session, engine
 from app.models.media import media, Media
 from app.models.tags import tags, Tags
 
-import json
-
 @app.route("/media/<int:media>")
 @app.route("/Media/<int:media>")
 def get_media(media):

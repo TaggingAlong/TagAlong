@@ -10,6 +10,9 @@ class Tags(object):
 			self.id_tags = id_tags
 			self.id_media = id_media
 			self.tag = tag
+	
+	def json(self):
+		return ("{}")
 
 	def __repr__(self):
 			return '<Tags %r #%r (%r)>' % (self.tag, self.id_tags, self.id_media)
