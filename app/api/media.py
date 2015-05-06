@@ -1,7 +1,18 @@
-from app.api import api_blueprint
+from flask import Flask, jsonify
 
-@api_blueprint.route("/media/<path:id>")
-@api_blueprint.route("/Media/<path:id>")
-def media_get(id):
-	print("Getting media {}".format(id))
-	return (id)
+from app import app
+from app.models import db_session, engine
+from app.models.media import media, Media
+
+import json
+
+@app.route("/media/<int:media>")
+@app.route("/Media/<int:media>")
+def get_media(media):
+	try:
+		#mdi = Media.query.filter_by(media=id_media).first()
+		media = []
+		data = {}
+	except AttributeError:
+		data = {}
+	return (jsonify(data))

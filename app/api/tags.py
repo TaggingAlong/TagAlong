@@ -1,7 +1,18 @@
-from app.api import api_blueprint
+from flask import Flask, jsonify
 
-@api_blueprint.route("/tags/<path:tags>")
-@api_blueprint.route("/Tags/<path:tags>")
-def tags_get(tags):
-	print("Getting tags {}".format(tags))
-	return (tags)
+from app import app
+from app.models import db_session, engine
+from app.models.tags import tags, Tags
+
+import json
+
+@app.route("/tag/<path:tags>")
+@app.route("/Tag/<path:tags>")
+def get_tag(tags):
+	try:
+		#usr = Tags.query.filter_by(tagname=user_name).first()
+		media = []
+		data = {}
+	except AttributeError:
+		data = {}
+	return (jsonify(data))
