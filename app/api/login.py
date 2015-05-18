@@ -31,7 +31,7 @@ def login_post():
 				"login_ttl": 3600
 				}
 	except AttributeError:
-		data = {}
+		data = {"error": "AttributeError"}
 	except KeyError:
 		data = {"error": "Missing argument."}
 	except Exception as e:
