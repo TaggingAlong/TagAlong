@@ -19,3 +19,19 @@ def get_user(user_name):
 	except AttributeError:
 		data = {}
 	return (jsonify(data))
+
+@app.route("/user/id/<int:id>")
+@app.route("/User/id/<int:id>")
+def get_user_id(id):
+	try:
+		usr = Users.query.filter_by(id_users=id).first()
+		media = []
+		data = {
+			"user_id": usr.id_users,
+			"user_name": usr.username,
+			"user_email": usr.email,
+			"user_media": media,
+			"user_media_count": len(media)}
+	except AttributeError:
+		data = {}
+	return (jsonify(data))
