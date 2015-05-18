@@ -1,37 +1,39 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
-from app import app
+from app import app, cypher
 from app.models import db_session, engine
 from app.models.users import users, Users
 
-@app.route("/user/<user_name>")
-@app.route("/User/<user_name>")
-def get_user(user_name):
+@app.route("/login", methods=['GET'])
+@app.route("/Login", methods=['GET'])
+def login_get():
 	try:
-		usr = Users.query.filter_by(username=user_name).first()
-		media = []
+		usr = Users.query.first()
 		data = {
-			"user_id": usr.id_users,
-			"user_name": usr.username,
-			"user_email": usr.email,
-			"user_media": media,
-			"user_media_count": len(media)}
+				"login_token": "0123456789ABCDEF",
+				"login_ttl": 3600
+				}
 	except AttributeError:
 		data = {}
 	return (jsonify(data))
 
-@app.route("/user/id/<int:id>")
-@app.route("/User/id/<int:id>")
-def get_user_id(id):
+@app.route("/login", methods=['POST'])
+@app.route("/Login", methods=['POST'])
+def login_post():
 	try:
-		usr = Users.query.filter_by(id_users=id).first()
-		media = []
+		r = request.form.to_dict()
+		r["user_password"] = cypher(r["user_password"])
+		usr = Users.query.filter_by(username=r["user_name"], passwd=r["user_password"]).first()
+		if (type(usr) == type(None)):
+			raise Exception("Bad credentials.")
 		data = {
-			"user_id": usr.id_users,
-			"user_name": usr.username,
-			"user_email": usr.email,
-			"user_media": media,
-			"user_media_count": len(media)}
+				"login_token": "0123456789ABCDEF",
+				"login_ttl": 3600
+				}
 	except AttributeError:
 		data = {}
+	except KeyError:
+		data = {"error": "Missing argument."}
+	except Exception as e:
+		data = {"error": str(e)}
 	return (jsonify(data))

@@ -22,7 +22,6 @@ def registered_routes():
 	    return ("Nope", 403)
 	return Response(get_registered_routes(app.url_map._rules), mimetype="text/plain")
 
-
 if (__name__ == "__main__"):
 	print(app.url_map)
 	#for url in app.url_map._rules:

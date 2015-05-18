@@ -21,6 +21,10 @@ def serve_media(filename):
 def is_validroute(route):
 	return (os.path.isfile("./app/api/%s.py" % route) and route != "__init__")
 
+def cypher(str):
+	#Apply cipher here
+	return (str)
+
 for route in os.listdir("./app/api/"):
 	route = route.replace(".py", "")
 	if (is_validroute(route)):
