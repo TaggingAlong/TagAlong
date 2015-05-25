@@ -18,4 +18,5 @@ def get_tag(tags):
 			for ele in tg:
 				lst.append(ele.tag)
 			data[media.id_media] = media.GetData(lst)
-	return (jsonify(data))
+	code = 200
+	return (jsonify(data), code)

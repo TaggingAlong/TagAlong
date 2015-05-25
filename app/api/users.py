@@ -16,9 +16,11 @@ def get_user(user_name):
 			"user_email": usr.email,
 			"user_media": media,
 			"user_media_count": len(media)}
+		code = 200
 	except AttributeError:
-		data = {}
-	return (jsonify(data))
+		data = {"error": "The user profile doesn’t exist."}
+		code = 404
+	return (jsonify(data), code)
 
 @app.route("/user/id/<int:id>")
 @app.route("/User/id/<int:id>")
@@ -32,6 +34,8 @@ def get_user_id(id):
 			"user_email": usr.email,
 			"user_media": media,
 			"user_media_count": len(media)}
+		code = 200	
 	except AttributeError:
-		data = {}
-	return (jsonify(data))
+		data = {"error": "The user profile doesn’t exist."}
+		code = 404
+	return (jsonify(data), code)

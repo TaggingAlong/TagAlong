@@ -15,9 +15,11 @@ def get_media(media):
 		for ele in tg:
 			lst.append(ele.tag)
 		data = mdi.GetData(lst)
+		code = 200
 	except AttributeError:
-		data = {}
-	return (jsonify(data))
+		data = {"error": "The resource was not found."}
+		code = 404
+	return (jsonify(data), code)
 
 @app.route("/media")
 @app.route("/Media")
@@ -31,6 +33,8 @@ def get_all_media():
 			for tag_elem in tag:
 				lst.append(tag_elem.tag)
 			data[med_elem.id_media] = med_elem.GetData(lst)
+		code = 200
 	except AttributeError:
-		data = {}
-	return (jsonify(data))
+		data = {"error": "The resource was not found."}
+		code = 404
+	return (jsonify(data), code)
