@@ -28,3 +28,29 @@ def get_media(media):
 	except AttributeError:
 		data = {}
 	return (jsonify(data))
+
+@app.route("/media")
+@app.route("/Media")
+def get_all_media():
+	data = {}
+	try:
+		mdi = Media.query.all()
+		print(mdi)
+		for elem in mdi:
+			tg = Tags.query.filter_by(id_media=elem.id_media).all()
+			lst = []
+			for ele in tg:
+				lst.append(ele.tag)
+			data[elem.id_media] = {
+					"media_name": elem.filename,
+					"media_hash": elem.hash,
+					"media_path": "storage/%s" % (elem.filename),
+					"media_thumb": "storage/t%s" % (elem.filename),
+					"media_mime": "",
+					"media_tags": lst,
+					"media_width": elem.width,
+					"media_height": elem.height
+					}
+	except AttributeError:
+		data = {}
+	return (jsonify(data))
