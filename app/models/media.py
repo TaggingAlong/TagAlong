@@ -18,6 +18,20 @@ class Media(object):
 	def __repr__(self):
 			return '<Media %r>' % (self.id_media)
 
+	def GetData(self, tags):
+		data = {
+				"media_id": self.id_media,
+				"media_name": self.filename,
+				"media_hash": self.hash,
+				"media_path": "storage/%s" % (self.filename),
+				"media_thumb": "storage/t%s" % (self.filename),
+				"media_mime": "",
+				"media_tags": tags,
+				"media_width": self.width,
+				"media_height": self.height
+				}
+		return (data)
+
 media = Table('media', metadata,
 	Column('id_media', Integer, primary_key=True),
 	Column('id_users', Integer),

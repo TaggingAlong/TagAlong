@@ -16,6 +16,18 @@ class Tags(object):
 
 	def __repr__(self):
 			return '<Tags %r #%r (%r)>' % (self.tag, self.id_tags, self.id_media)
+	def GetData(self):
+		data = {
+				"media_name": media.filename,
+				"media_hash": media.hash,
+				"media_path": "storage/%s" % (media.filename),
+				"media_mime": "",
+				"media_thumb": "storage/t%s" % (media.filename),
+				"media_width": media.width,
+				"media_height": media.height,
+				"media_tags": lst
+				}
+		return (data)
 
 tags = Table('tags', metadata,
 	Column('id_tags', Integer, primary_key=True),

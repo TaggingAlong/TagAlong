@@ -14,17 +14,7 @@ def get_media(media):
 		lst = []
 		for ele in tg:
 			lst.append(ele.tag)
-
-		data = {
-				"media_name": mdi.filename,
-				"media_hash": mdi.hash,
-				"media_path": "storage/%s" % (mdi.filename),
-				"media_thumb": "storage/t%s" % (mdi.filename),
-				"media_mime": "",
-				"media_tags": lst,
-				"media_width": mdi.width,
-				"media_height": mdi.height
-				}
+		data = mdi.GetData(lst)
 	except AttributeError:
 		data = {}
 	return (jsonify(data))
@@ -34,23 +24,13 @@ def get_media(media):
 def get_all_media():
 	data = {}
 	try:
-		mdi = Media.query.all()
-		print(mdi)
-		for elem in mdi:
-			tg = Tags.query.filter_by(id_media=elem.id_media).all()
+		med = Media.query.all()
+		for med_elem in med:
+			tag = Tags.query.filter_by(id_media=med_elem.id_media).all()
 			lst = []
-			for ele in tg:
-				lst.append(ele.tag)
-			data[elem.id_media] = {
-					"media_name": elem.filename,
-					"media_hash": elem.hash,
-					"media_path": "storage/%s" % (elem.filename),
-					"media_thumb": "storage/t%s" % (elem.filename),
-					"media_mime": "",
-					"media_tags": lst,
-					"media_width": elem.width,
-					"media_height": elem.height
-					}
+			for tag_elem in tag:
+				lst.append(tag_elem.tag)
+			data[med_elem.id_media] = med_elem.GetData(lst)
 	except AttributeError:
 		data = {}
 	return (jsonify(data))
