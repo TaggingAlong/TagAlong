@@ -17,9 +17,9 @@ class Users(object):
 
 users = Table('users', metadata,
 	Column('id_users', Integer, primary_key=True),
-	Column('username', String(255)),
-	Column('passwd', String(255)),
-	Column('email', String(255))
+	Column('username', String),
+	Column('passwd', String),
+	Column('email', String)
 )
 
 mapper(Users, users)

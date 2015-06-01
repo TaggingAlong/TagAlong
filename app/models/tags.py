@@ -32,7 +32,7 @@ class Tags(object):
 tags = Table('tags', metadata,
 	Column('id_tags', Integer, primary_key=True),
 	Column('id_media', Integer),
-	Column('tag', String(255))
+	Column('tag', String)
 )
 
 mapper(Tags, tags)

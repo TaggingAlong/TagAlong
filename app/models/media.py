@@ -36,12 +36,12 @@ class Media(object):
 media = Table('media', metadata,
 	Column('id_media', Integer, primary_key=True),
 	Column('id_users', Integer),
-	Column('filename', String(255)),
+	Column('filename', String),
 	Column('width', Integer),
 	Column('height', Integer),
 	Column('size', Integer),
 	Column('mimetype', String),
-	Column('hash', String(255))
+	Column('hash', String)
 )
 
 mapper(Media, media)
