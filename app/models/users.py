@@ -6,8 +6,7 @@ from app.models import metadata, db_session
 class Users(object):
 	query = db_session.query_property()
 	
-	def __init__(self, id_users=None, username=None, email=None, passwd=None):
-	    self.id_users = id_users
+	def __init__(self, username=None, email=None, passwd=None):
 	    self.username = username
 	    self.passwd = passwd
 	    self.email = email

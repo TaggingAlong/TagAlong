@@ -6,8 +6,7 @@ from app.models import metadata, db_session
 class Media(object):
 	query = db_session.query_property()
 	
-	def __init__(self, id_media=None, id_users=None, filename=None, width=None, height=None, size=None, mimetype=None, hash=None):
-			self.id_media = id_media
+	def __init__(self, id_users=None, filename=None, width=None, height=None, size=None, mimetype=None, hash=None):
 			self.id_users = id_users
 			self.filename = filename
 			self.width = width

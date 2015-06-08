@@ -6,8 +6,7 @@ from app.models import metadata, db_session
 class Tags(object):
 	query = db_session.query_property()
 	
-	def __init__(self, id_tags=None, id_media=None, tag=None):
-			self.id_tags = id_tags
+	def __init__(self, id_media=None, tag=None):
 			self.id_media = id_media
 			self.tag = tag
 	
